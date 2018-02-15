@@ -14,7 +14,7 @@ async function findFlaky()
     for( var i = 0; i < 20; i++ )
     {
         try{
-            child.execSync('cd simplecalc; mvn test');
+            child.execSync('cd simplecalc && mvn test');
         }catch(e){}
         var contents = fs.readFileSync(__dirname + testReport)
         let xml2json = await Bluebird.fromCallback(cb => parser.parseString(contents, cb));
@@ -42,7 +42,7 @@ function readResults(result)
 async function calculatePriority()
 {
     try{
-        child.execSync('cd simplecalc; mvn test');
+        child.execSync('cd simplecalc && mvn test');
     }catch(e){}
     var contents = fs.readFileSync(__dirname + testReport)
     let xml2json = await Bluebird.fromCallback(cb => parser.parseString(contents, cb));
