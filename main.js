@@ -6,8 +6,11 @@ var Bluebird = require('bluebird')
 
 var testReport =  '/simplecalc/target/surefire-reports/TEST-com.github.stokito.unitTestExample.calculator.CalculatorTest.xml';
 
-calculatePriority();
-//findFlaky();
+if( process.env.NODE_ENV != "test")
+{
+    calculatePriority();
+    //findFlaky();
+}
 
 async function findFlaky()
 {
@@ -48,4 +51,9 @@ async function calculatePriority()
     let xml2json = await Bluebird.fromCallback(cb => parser.parseString(contents, cb));
     var tests = readResults(xml2json);
     tests.forEach( e => console.log(e));
+
+    return tests;
 }
+
+module.exports.findFlaky = findFlaky;
+module.exports.calculatePriority = calculatePriority;
