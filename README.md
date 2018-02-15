@@ -1,3 +1,5 @@
+[![build](https://travis-ci.org/CSC-DevOps/TestSuites.svg?branch=master)](https://travis-ci.org/CSC-DevOps/TestSuites)
+
 # Test Suites
 
 ## Setup
